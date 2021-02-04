@@ -27,8 +27,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api',postRoutes);
 app.use('/api',userRoutes);
 // Add react front end
-// const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname('/');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'client','build')));
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client','build', 'index.html'));
