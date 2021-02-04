@@ -29,9 +29,9 @@ app.use('/api',userRoutes);
 // Add react front end
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'client','build')));
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client','build', 'index.html'));
 });
 
 // Catch 404 and forward to error handler // TODO: Figure out proper error handling
