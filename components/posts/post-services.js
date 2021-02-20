@@ -3,24 +3,25 @@ import validator from 'validator';
 import Comment from '../comments/comment-model.js'; //needed so that populate() knows what 'comments' are
 
 async function getPosts(){
-  const posts = await Post.find().lean().populate('comments').sort({date: 'descending'});
+  const posts = await Post.find().lean().populate('comments').populate('user').sort({date: 'descending'});
   return posts;
 }
 
 async function getPost(postNumber){
-  const post = await Post.findOne({postNumber: postNumber}).lean().populate('comments').populate('user');
+  const post = await Post.findOne({postNumber: postNumber}).lean().populate('comments')
+    .populate({path:'comments',populate: {path:'author',model:'User'}})
+    .populate('user');
   return post;
 }
 
-// TODO: Add in user when login is created
-async function createPost(content){
+async function createPost(content,user){
   let {title,text} = content;
   title = validator.trim(title);
   title = validator.escape(title);
   text = validator.trim(text);
   text = validator.escape(text);
   const isTitleValid = validator.isLength(title,{min: 1, max: 1000});
-  const isTextValid = validator.isLength(text,{min:1, max: 250000});
+  const isTextValid = validator.isLength(text,{min:1, max: 50000000}); //50 MB max
   const postCount = await Post.countDocuments({},(err,count)=>{return count});
   const postNumber = postCount + 1;
   if (isTitleValid && isTextValid){
@@ -28,6 +29,7 @@ async function createPost(content){
       title: title,
       text: text,
       date: Date.now(),
+      user: user._id,
       postNumber: postNumber
     })
     await newPost.save();
@@ -38,22 +40,30 @@ async function createPost(content){
   }
 }
 
-// TODO: Add in user when login is created
-async function createComment(comment){
+async function createComment(comment,user){
   let {text,postNumber} = comment;
   text = validator.trim(text);
   text = validator.escape(text);
-  const isTextValid = validator.isLength(text,{min:1, max: 10000});
+  const isTextValid = validator.isLength(text,{min:1, max: 5000000}); // 5MB max
   if (isTextValid){
-    const newComment = new Comment({
-      text: text,
-      date: Date.now()
-    })
+    let newComment;
+    if (user){
+      newComment = new Comment({
+        author: user._id,
+        text: text,
+        date: Date.now()
+      });
+    } else {
+      newComment = new Comment({
+        text: text,
+        date: Date.now()
+      })
+    }
     await newComment.save();
     const correspondingPost = await Post.findOne({postNumber: postNumber});
     correspondingPost.comments.push(newComment._id);
     correspondingPost.save();
-    return newComment;
+    return await newComment.populate('author').execPopulate();
   }
   else {
     return {errors:'500 Server Error'};

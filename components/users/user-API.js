@@ -1,27 +1,29 @@
 import express from 'express';
 var router = express.Router();
+import {passport,createUser} from './user-services.js';
 
-// TODO: Future features - Oauth
+router.get('/session',(req,res)=>{
+  if (req.isAuthenticated()){
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(401);
+  }
+});
 
 // Login page
-// TODO: Future features, when login is created
-// router.get('/login', function(req, res) {
-//   res.send('NOT IMPLEMENTED: Check if user is already logged in (session), otherwise redirect. Would redirect happen here or in lcient?');
-// });
-
-router.post('/login', function(req, res) {
-  res.send('NOT IMPLEMENTED: Login ');
+router.post('/login', passport.authenticate('local'), function(req,res){
+  res.sendStatus(200);
 });
-
 
 // Signup page
-// TODO: Future features, when login is created
-// router.get('/sign-up', function(req, res) {
-//   res.send('NOT IMPLEMENTED: Check if user is already logged in (session), otherwise redirect. Would redirect happen here or in lcient?');
-// });
-
-router.post('/sign-up', function(req, res) {
-  res.send('NOT IMPLEMENTED: Create an account');
+router.post('/signup', async (req, res)=> {
+  const userCreated = await createUser(req.body);
+  (userCreated) ? res.sendStatus(201) : res.sendStatus(401);
 });
 
+// Logout
+router.get('/logout',(req,res)=>{
+  req.logout();
+  res.sendStatus(200);
+});
 export default router;

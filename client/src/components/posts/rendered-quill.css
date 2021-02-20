@@ -1,0 +1,259 @@
+.rendered-quill {
+  line-height: 1.42;
+  font-size: 1em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+.rendered-quill .ql-clipboard {
+  left: -100000px;
+  height: 1px;
+  overflow-y: hidden;
+  position: absolute;
+  top: 50%;
+}
+.rendered-quill .ql-clipboard p {
+  margin: 0;
+  padding: 0;
+}
+.rendered-quill p,
+ol,
+ul,
+pre,
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+.rendered-quill ol,
+ul {
+  padding-left: 1.5em;
+}
+.rendered-quill ol > li,
+ul > li {
+  list-style-type: none;
+}
+.rendered-quill ul > li::before {
+  content: '\2022';
+}
+.rendered-quill li::before {
+  display: inline-block;
+  white-space: nowrap;
+  width: 1.2em;
+}
+.rendered-quill li:not(.ql-direction-rtl)::before {
+  margin-left: -1.5em;
+  margin-right: 0.3em;
+  text-align: right;
+}
+.rendered-quill li.ql-direction-rtl::before {
+  margin-left: 0.3em;
+  margin-right: -1.5em;
+}
+.rendered-quill ol li:not(.ql-direction-rtl),
+ul li:not(.ql-direction-rtl) {
+  padding-left: 1.5em;
+}
+.rendered-quill ol li.ql-direction-rtl,
+ul li.ql-direction-rtl {
+  padding-right: 1.5em;
+}
+.rendered-quill ol li {
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+  counter-increment: list-0;
+}
+.rendered-quill ol li:before {
+  content: counter(list-0, decimal) '. ';
+}
+
+.rendered-quill .ql-video {
+  display: block;
+  max-width: 100%;
+}
+.rendered-quill .ql-video.ql-align-center {
+  margin: 0 auto;
+}
+.rendered-quill .ql-video.ql-align-right {
+  margin: 0 0 0 auto;
+}
+.rendered-quill .ql-bg-black {
+  background-color: #000;
+}
+.rendered-quill .ql-bg-red {
+  background-color: #e60000;
+}
+.rendered-quill .ql-bg-orange {
+  background-color: #f90;
+}
+.rendered-quill .ql-bg-yellow {
+  background-color: #ff0;
+}
+.rendered-quill .ql-bg-green {
+  background-color: #008a00;
+}
+.rendered-quill .ql-bg-blue {
+  background-color: #06c;
+}
+.rendered-quill .ql-bg-purple {
+  background-color: #93f;
+}
+.rendered-quill .ql-color-white {
+  color: #fff;
+}
+.rendered-quill .ql-color-red {
+  color: #e60000;
+}
+.rendered-quill .ql-color-orange {
+  color: #f90;
+}
+.rendered-quill .ql-color-yellow {
+  color: #ff0;
+}
+.rendered-quill .ql-color-green {
+  color: #008a00;
+}
+.rendered-quill .ql-color-blue {
+  color: #06c;
+}
+.rendered-quill .ql-color-purple {
+  color: #93f;
+}
+.rendered-quill .ql-direction-rtl {
+  direction: rtl;
+  text-align: inherit;
+}
+.rendered-quill .ql-align-center {
+  text-align: center;
+}
+.rendered-quill .ql-align-justify {
+  text-align: justify;
+}
+.rendered-quill .ql-align-right {
+  text-align: right;
+}
+.rendered-quill .ql-blank::before {
+  color: rgba(0,0,0,0.6);
+  content: attr(data-placeholder);
+  font-style: italic;
+  left: 15px;
+  pointer-events: none;
+  position: absolute;
+  right: 15px;
+}
+.rendered-quill .ql-hidden {
+  display: none;
+}
+.rendered-quill .ql-out-bottom,
+.ql-out-top {
+  visibility: hidden;
+}
+.rendered-quill .ql-formats {
+  display: inline-block;
+  vertical-align: middle;
+}
+.rendered-quill .ql-formats:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+.rendered-quill .ql-stroke {
+  fill: none;
+  stroke: #444;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+.rendered-quill .ql-stroke-miter {
+  fill: none;
+  stroke: #444;
+  stroke-miterlimit: 10;
+  stroke-width: 2;
+}
+.rendered-quill .ql-fill,
+.ql-stroke.ql-fill {
+  fill: #444;
+}
+.rendered-quill .ql-empty {
+  fill: none;
+}
+.rendered-quill .ql-even {
+  fill-rule: evenodd;
+}
+.rendered-quill .ql-thin,
+.ql-stroke.ql-thin {
+  stroke-width: 1;
+}
+.ql-transparent {
+  opacity: 0.4;
+}
+.rendered-quill .ql-direction svg:last-child {
+  display: none;
+}
+.rendered-quill .ql-direction.ql-active svg:last-child {
+  display: inline;
+}
+.rendered-quill .ql-direction.ql-active svg:first-child {
+  display: none;
+}
+.rendered-quill h1 {
+  font-size: 2em;
+}
+.rendered-quill h2 {
+  font-size: 1.5em;
+}
+.rendered-quill h3 {
+  font-size: 1.17em;
+}
+.rendered-quill h4 {
+  font-size: 1em;
+}
+.rendered-quill h5 {
+  font-size: 0.83em;
+}
+.rendered-quill h6 {
+  font-size: 0.67em;
+}
+.rendered-quill a {
+  text-decoration: underline;
+}
+.rendered-quill blockquote {
+  border-left: 4px solid #ccc;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-left: 16px;
+}
+.rendered-quill code,
+pre {
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+.rendered-quill pre {
+  white-space: pre-wrap;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 5px 10px;
+}
+.rendered-quill code {
+  font-size: 85%;
+  padding: 2px 4px;
+}
+.rendered-quill pre.ql-syntax {
+  background-color: #23241f;
+  color: #f8f8f2;
+  overflow: visible;
+}
+.rendered-quill img {
+  max-width: 100%;
+}
+.rendered-quill a {
+  color: #06c;
+}
+.rendered-quill .ql-container{
+  border: 1px solid #ccc;
+}

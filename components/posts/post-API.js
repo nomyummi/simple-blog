@@ -7,13 +7,13 @@ router.get('/', async (req, res)=>{
   res.json(await getPosts());
 });
 
-// TODO: Future features, when login is created
 // // When creating posts, add a unique post number (num posts + 1) to the new post
 // // Possible bug when two posts get created simultaneously (will there be two posts with the same postNumber?)
 // Since this is just a demo, im going to leave as is because it's a bit difficult to test
+
 router.post('/post/create', async (req, res)=> {
-  const postNumber = await createPost(req.body);
-  return (postNumber > 0) ? res.json({success: 'Post Created',postNumber: postNumber}) : res.status(500).json({errors: '500 Server Error'});
+  const postNumber = await createPost(req.body,req.user);
+  (postNumber > 0) ? res.json({success: 'Post Created',postNumber: postNumber}) : res.status(500).json({errors: '500 Server Error'});
 });
 
 // Read a post
@@ -29,8 +29,8 @@ router.get('/post/:postNumber', async (req, res)=>{
 
 // Post a comment
 router.post('/post/:postNumber', async (req,res)=>{
-  const comment = await createComment(req.body);
-  return res.json(comment);
+  const comment = await createComment(req.body,req.user);
+  res.json(comment);
 });
 
 // TODO: Future features, when login is created

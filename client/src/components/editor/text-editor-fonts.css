@@ -1,0 +1,118 @@
+.app .ql-editor {
+  font-family: "Arial";
+}
+.ql-container {
+  font-size: 1em;
+}
+.ql-snow .ql-picker.ql-font {
+  width: 150px;
+}
+.ql-picker.ql-font .ql-picker-label[data-value="Arial"]::before, 
+.ql-picker.ql-font .ql-picker-item[data-value="Arial"]::before
+{
+    font-family: "Arial", sans-serif;
+    content: "Arial" !important;
+}
+.ql-picker.ql-font .ql-picker-label[data-value="Roboto"]::before, 
+.ql-picker.ql-font .ql-picker-item[data-value="Roboto"]::before
+{
+    font-family: "Roboto", sans-serif;
+    content: "Roboto" !important;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="Montserrat"]::before, 
+.ql-picker.ql-font .ql-picker-item[data-value="Montserrat"]::before
+{
+    font-family: "Montserrat",sans-serif;
+    content: "Montserrat" !important;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="lucida-console"]::before, 
+.ql-picker.ql-font .ql-picker-item[data-value="lucida-console"]::before
+{
+  font-family: "Lucida Console", "Courier New", monospace;
+    content: "Lucida Console" !important;
+}
+.ql-picker.ql-font .ql-picker-label[data-value="times-new-roman"]::before, 
+.ql-picker.ql-font .ql-picker-item[data-value="times-new-roman"]::before
+{
+    font-family: "Times New Roman";
+    content: "Times New Roman" !important;
+}
+.ql-picker.ql-font .ql-picker-label[data-value="Merriweather"]::before, 
+.ql-picker.ql-font .ql-picker-item[data-value="Merriweather"]::before
+{
+  font-family: 'Merriweather', serif;
+  content: "Merriweather" !important;
+}
+.ql-picker.ql-font .ql-picker-label[data-value="bebas-neue"]::before, 
+.ql-picker.ql-font .ql-picker-item[data-value="bebas-neue"]::before
+{
+    font-family: 'Bebas Neue', cursive;
+    content: "Bebas Neue" !important;
+}
+.ql-picker.ql-font .ql-picker-label[data-value="Lobster"]::before, 
+.ql-picker.ql-font .ql-picker-item[data-value="Lobster"]::before
+{
+    font-family: 'Lobster', cursive;
+    content: "Lobster" !important;
+}
+.ql-picker.ql-font .ql-picker-label[data-value="Inconsolata"]::before, 
+.ql-picker.ql-font .ql-picker-item[data-value="Inconsolata"]::before
+{
+    font-family: 'Inconsolata', monospace;
+    content: "Inconsolata" !important;
+}
+.ql-picker.ql-font .ql-picker-label[data-value="Caveat"]::before, 
+.ql-picker.ql-font .ql-picker-item[data-value="Caveat"]::before
+{
+    font-family: 'Caveat', cursive;
+    content: "Caveat" !important;
+}
+.ql-picker.ql-font .ql-picker-label[data-value="dancing-script"]::before, 
+.ql-picker.ql-font .ql-picker-item[data-value="dancing-script"]::before
+{
+    font-family: 'Dancing Script', cursive;
+    content: "Dancing Script" !important;
+}
+
+/* Set content font-families */
+.ql-font-Arial {
+  font-family: "Arial", sans-serif;
+}
+.ql-font-Roboto {
+  font-family: "Roboto", sans-serif;
+}
+.ql-font-Montserrat {
+  font-family: "Montserrat",sans-serif;
+}
+.ql-font-times-new-roman {
+  font-family: "Times New Roman";
+}
+.ql-font-lucida-console {
+  font-family: "Lucida Console";
+}
+.ql-font-Merriweather {
+  font-family: "Merriweather";
+}
+.ql-font-bebas-neue {
+  font-family: 'Bebas Neue', cursive;
+}
+.ql-font-Lobster {
+  font-family: 'Lobster', cursive;
+}
+.ql-font-Inconsolata {
+  font-family: 'Inconsolata', monospace;
+}
+.ql-font-Caveat {
+  font-family: 'Caveat', cursive;
+}
+.ql-font-dancing-script {
+  font-family: 'Dancing Script', cursive;
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value]::before{
+  content: attr(data-value);
+  font-size: attr(data-value)!important;
+}
