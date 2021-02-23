@@ -2,6 +2,8 @@
 A demo blog that connects a frontend app (React) to a backend API (NodeJS/Express + MongoDB). Core functionality has been implemented (see Current features). Additional features may be added in the future (see Future features).
 
 Demo link: https://fast-refuge-07159.herokuapp.com/
+
+Note: Due to how the Heroku free tier works, the demo may take some time to load.
 ## Current features:
 - Get a list of all posts (/)
 - Get a single post and associated comments. Add comment to the post. (/post/post_number)
