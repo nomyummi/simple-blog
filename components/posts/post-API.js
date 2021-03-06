@@ -1,10 +1,31 @@
 import express from 'express';
 import {getPost,createPost,getPosts,createComment} from './post-services.js';
+import redis from 'redis';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const router = express.Router();
 
-router.get('/', async (req, res)=>{
-  res.json(await getPosts());
+// Connect to Redis
+const client = redis.createClient ({
+  port : process.env.REDIS_PORT,
+  host :  process.env.REDIS_HOST
+});
+client.auth(process.env.REDIS_PASS);
+
+router.get('/', (req, res)=>{
+  client.get(`GET POSTS`,async (err,cachedPosts)=>{
+    if (cachedPosts){
+      const json = JSON.parse(cachedPosts);
+      res.json(json);
+    }
+    else {
+      const posts = await getPosts();
+      client.set('GET POSTS',JSON.stringify(posts));
+      res.json(posts);
+    }
+  });
+  
 });
 
 // // When creating posts, add a unique post number (num posts + 1) to the new post
@@ -17,14 +38,24 @@ router.post('/post/create', async (req, res)=> {
 });
 
 // Read a post
-router.get('/post/:postNumber', async (req, res)=>{
-  const post = await getPost(req.params.postNumber);
-  if (post === null){
-    res.status(404).json({errors: '404 Post Does Not Exist'});
-  }
-  else {
-    res.json(post);
-  }
+router.get('/post/:postNumber', (req, res)=>{
+  const postNumber = req.params.postNumber;
+  client.get(`GET ${postNumber}`,async (err,cachedPost)=>{
+    if (cachedPost){
+      const json = JSON.parse(cachedPost);
+      res.json(json);
+    } 
+    else {
+      const post = await getPost(postNumber);
+      if (post === null){
+        res.status(404).json({errors: '404 Post Does Not Exist'});
+      }
+      else {
+        client.set(`GET ${postNumber}`,JSON.stringify(post));
+        res.json(post);
+      }
+    }
+  })
 });
 
 // Post a comment
